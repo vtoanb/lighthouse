@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: front_development
+  host: db
+  username: postgres
+  password: 
+  #schema_search_path: myapp,sharedapp,public
+
+test:
+  <<: *default
+  database: front_test
+production:
+  <<: *default
+  database: front_production
+  username: front
+  password: <%= ENV['FRONT_DATABASE_PASSWORD'] %>

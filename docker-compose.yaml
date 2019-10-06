@@ -1,0 +1,26 @@
+version: "3"
+services:
+  lighthouse:
+    cap_add:
+      - SYS_ADMIN
+    build:
+      context: ./lighthousebot/
+    ports:
+      - 8080:8080
+  app:
+    build: .
+    volumes:
+      - ./:/myapp
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD:123456
+    restart: always
+volumes:
+  pgdata:
