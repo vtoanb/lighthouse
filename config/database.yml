@@ -6,9 +6,10 @@ default: &default
 development:
   <<: *default
   database: front_development
-  host: db
-  username: postgres
-  password: 
+  # host: db
+  # username: postgres
+  username: toan
+  password:
   #schema_search_path: myapp,sharedapp,public
 
 test:

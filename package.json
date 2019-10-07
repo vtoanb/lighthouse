@@ -1,15 +1,31 @@
 {
   "name": "front",
   "private": true,
+  "scripts": {
+    "start": "docker-compose up &",
+    "build": "docker-compose build",
+    "restart": "yarn build && yarn serve",
+    "serve": "./docker_run.sh",
+    "chrome": "docker run -it --rm --cap-add=SYS_ADMIN lighthouse_ci https://example.com --fast --quiet --output=json | node -e \"let f = ''; process.stdin.on('data', d => f += d); process.stdin.on('close', () => console.log(JSON.parse(f).userAgent));\""
+  },
   "dependencies": {
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "^4.0.7",
+    "bootstrap": "4.3.1",
+    "chart.js": "^2.8.0",
+    "datatables": "^1.10.18",
+    "fontawesome": "^5.6.3",
+    "jquery": "^3.4.1",
+    "jquery-easing": "^0.0.1",
+    "popper": "^1.0.1",
+    "popper.js": "^1.15.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "webpack-dev-server": "^3.8.2"
   }
 }

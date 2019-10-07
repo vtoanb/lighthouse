@@ -4,15 +4,18 @@ services:
     cap_add:
       - SYS_ADMIN
     build:
-      context: ./lighthousebot/
+      context: ./docker/lighthousebot/
     ports:
       - 8080:8080
   app:
     build: .
     volumes:
       - ./:/myapp
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     ports:
       - 3000:3000
+      - 3035:3035
     depends_on:
       - db
   db:
@@ -21,6 +24,8 @@ services:
       - pgdata:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD:123456
+    ports:
+      - 15432:5432
     restart: always
 volumes:
   pgdata:
